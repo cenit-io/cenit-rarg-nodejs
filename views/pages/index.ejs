@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("form").ajaxForm({
+        success: function (data, textStatus, jqXHR, $form) {
+          const dlg = $('#result-dlg');
+
+          dlg.find('.modal-body').html("<pre><code class='json'>" + JSON.stringify(data, null, 1) + "</code></pre>");
+          dlg.modal();
+
+          $('pre code').each(function (i, block) {
+            hljs.highlightBlock(block);
+          });
+
+          console.log(data);
+          console.log(textStatus);
+        },
+        error: function (jqXHR, textStatus, errorThrown, $form) {
+          const dlg = $('#result-dlg');
+
+          dlg.find('.modal-body').html("<pre><code class='nohighlight error'>" + jqXHR.responseText + "</code></pre>");
+          dlg.modal();
+
+          $('pre code').each(function (i, block) {
+            hljs.highlightBlock(block);
+          });
+
+          console.log(jqXHR);
+          console.log(errorThrown);
+        },
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+<% include ../partials/nav.ejs %>
+
+<div class="jumbotron">
+  <div class="container">
+    <div style="display: table">
+      <div class="lang-logo">
+        <a href="/"><img src="/lang-logo.png"></a>
+      </div>
+      <div class="title">
+        <span>Service to run Cenit-IO remote algorithms written in Node JS.</span>
+      </div>
+    </div>
+    <hr/>
+    <form method="post">
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label>Key</label>
+          <input type="text" name="access_key" class="form-control" required="true"/>
+        </div>
+        <div class="form-group col-sm-6">
+          <label>Token</label>
+          <input type="text" name="access_token" class="form-control" required="true"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label>Code</label>
+          <textarea type="text" name="code" class="form-control" required="true" rows="10"></textarea>
+        </div>
+        <div class="col-md-6 without-margin">
+          <div class="form-group col-md-12">
+            <label>Parameters</label>
+            <textarea type="text" name="parameters" class="form-control" rows="5"></textarea>
+          </div>
+          <div class="col-md-12">
+            <input type="submit" name="evaluate" value="Evaluate" class="btn btn-primary">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="result-dlg" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Algorithm execution result:</h4>
+      </div>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

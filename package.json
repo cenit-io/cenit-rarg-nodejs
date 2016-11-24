@@ -1,0 +1,34 @@
+{
+  "name": "cenit-rarg-nodejs",
+  "version": "1.0.0",
+  "description": "REST service to run Cenit-IO remote algorithms written in Node JS.",
+  "main": "index.js",
+  "engines": {
+    "node": "4.3.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cenit-io/cenit-rarg-nodejs.git"
+  },
+  "author": {
+    "name": "Yoandry Pacheco Aguila",
+    "email": "yoandrypa@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cenit-io/cenit-rarg-nodejs/issues"
+  },
+  "homepage": "https://github.com/cenit-io/cenit-rarg-nodejs",
+  "keywords": [
+    "cenit-io"
+  ],
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "ejs": "2.4.1",
+    "express": "4.13.3"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Cenit-IO Remote Algorithms",
+  "description": "REST service to run Cenit-IO remote algorithms written in Node JS.",
+  "repository": "https://github.com/cenit-io/cenit-rarg-nodejs",
+  "logo": "http://cenit-rarg-nodejs.herokuapp.com/node.svg",
+  "keywords": ["cenit-io"],
+  "image": "heroku/nodejs"
+}

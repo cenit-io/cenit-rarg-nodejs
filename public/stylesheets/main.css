@@ -1,0 +1,79 @@
+.jumbotron {
+    background: #532F8C;
+    color: white;
+    padding: 1em;
+}
+
+.jumbotron .btn-primary {
+    background: #845ac7;
+    border-color: #845ac7;
+}
+
+.jumbotron .btn-primary:hover {
+    background: #7646c1;
+}
+
+.jumbotron p {
+    color: #d9ccee;
+    max-width: 75%;
+    margin: 1em auto 2em;
+}
+
+.navbar + .jumbotron {
+    margin-top: -20px;
+}
+
+.jumbotron .lang-logo {
+    display: table-cell;
+    background: #B01302;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 70px;
+    height: 70px;
+    border: 2px solid white;
+}
+
+.jumbotron .title {
+    display: table-cell;
+    height: 70px;
+    padding-left: 1ex;
+    vertical-align: middle;
+    font-size: 150%;
+    font-weight: bold;
+}
+
+.jumbotron .lang-logo img {
+    max-width: 100%;
+}
+
+.icon-cenit-io:before {
+    content: "IXI";
+    font-size: 18px;
+    color: transparent;
+    padding: 0px 1px 1px;
+    background: url("/cenit-logo.png") no-repeat center;
+}
+
+form label {
+    text-transform: uppercase;
+}
+
+form label:after {
+    content: ':';
+}
+
+.without-margin {
+    padding: 0;
+    margin: 0;
+}
+
+.modal-body pre code {
+    max-height: 25em;
+    max-width: 60em;
+    overflow: auto;
+}
+
+code.error {
+    white-space: nowrap;
+    color: red;
+}
