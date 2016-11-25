@@ -73,7 +73,8 @@ form label:after {
     overflow: auto;
 }
 
-code.error {
-    white-space: nowrap;
+pre.error {
     color: red;
+    max-height: 25em;
+    max-width: 60em;
 }
