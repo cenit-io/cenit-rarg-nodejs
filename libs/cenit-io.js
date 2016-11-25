@@ -13,9 +13,9 @@ module.exports = function (api_path, access_key, access_token) {
                 };
 
             request(options, function (err, response, body) {
-                var data = JSON.parse(body);
-
                 if (err || response.statusCode != 200) {
+                    var data = JSON.parse(body);
+
                     callback(err || data.status || response.statusMessage, null);
                 } else {
                     callback(err, data);
