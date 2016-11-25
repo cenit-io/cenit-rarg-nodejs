@@ -2,9 +2,11 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     env = require('node-env-file'),
     path = require('path'),
+    fs = require('fs'),
+    envFile = path.join(__dirname, '.env'),
     app = express();
 
-env(path.join(__dirname, '.env'));
+if (fs.existsSync(envFile)) env(envFile);
 
 app.set('port', (process.env.PORT || 5000));
 
