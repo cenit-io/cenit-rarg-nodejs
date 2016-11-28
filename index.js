@@ -14,12 +14,6 @@ if (cluster.isMaster) {
 
     var maxWorkers = 4,
 
-        // Handle worker messages
-        onMessage = function (message) {
-            console.log('We got a message!');
-            console.log(message);
-        },
-
         // Check workers to restart
         checkWorkers = function () {
             for (var i in cluster.workers) {
@@ -32,7 +26,7 @@ if (cluster.isMaster) {
         // Create worker
         createWorker = function () {
             var worker = cluster.fork();
-            worker.on('message', onMessage);
+            worker.on('message', console.log);
             worker.on('online', function () {
                 console.info('Worker #' + worker.id + ' is online.');
                 checkWorkers();
