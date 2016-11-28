@@ -51,7 +51,7 @@
     font-size: 18px;
     color: transparent;
     padding: 0px 1px 1px;
-    background: url("/cenit-logo.png") no-repeat center;
+    background: url("/public/images/cenit-logo.png") no-repeat center;
 }
 
 form label {
