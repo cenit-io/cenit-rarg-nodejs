@@ -1,20 +1,30 @@
-module.exports = function (req, res, params) {
+module.exports = function (request, response, params) {
     var parameters = params.parameters || params.params || {},
-        access_key = req.header('x-user-access-key'),
-        access_token = req.header('x-user-access-token'),
+        access_key = request.header('x-user-access-key'),
+        access_token = request.header('x-user-access-token'),
         api_path = process.env.CENIT_IO_API_PATH,
         cenit_io = require('../libs/cenit-io')(api_path, access_key, access_token),
 
+        done = function (data) { response.json(data) },
+
+        raise = function (e) {
+            if (typeof e != 'object') {
+                response.status(500).send(String(e));
+            } else if (e instanceof Error) {
+                response.status(500).send(e.stack);
+            } else {
+                response.status(500).send(e.toString());
+            }
+        },
+
         run = function (code) {
             var vm = require('vm'),
-                context = { require: require, cenit_io: cenit_io, params: parameters },
-                result;
+                context = { require: require, done: done, raise: raise, cenit_io: cenit_io, params: parameters };
 
             try {
-                result = vm.runInNewContext(code, context, 'stack.vm');
-                res.json(result);
+                vm.runInNewContext(code, context, 'stack.vm');
             } catch (e) {
-                res.status(500).send(e.stack);
+                response.status(500).send(e.stack);
             }
         },
 
