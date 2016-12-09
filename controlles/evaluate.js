@@ -4,6 +4,7 @@ module.exports = function (request, response, params) {
         access_token = request.header('x-user-access-token'),
         api_path = process.env.CENIT_IO_API_PATH,
         cenit_io = require('../libs/cenit-io')(api_path, access_key, access_token),
+        extend = require('util')._extend,
 
         done = function (data) { response.json(data) },
 
@@ -17,9 +18,16 @@ module.exports = function (request, response, params) {
             }
         },
 
+
         run = function (code) {
             var vm = require('vm'),
-                context = { require: require, done: done, raise: raise, cenit_io: cenit_io, params: parameters };
+                context = extend(parameters, {
+                    require: require,
+                    done: done,
+                    raise: raise,
+                    cenit_io: cenit_io,
+                    params: parameters
+                });
 
             try {
                 vm.runInNewContext(code, context, 'stack.vm');
